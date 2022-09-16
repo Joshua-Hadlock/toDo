@@ -1,0 +1,12 @@
+
+div {
+    border: black 1px solid;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+.backDrop {
+    background-color: rgb(197, 197, 197);
+}
