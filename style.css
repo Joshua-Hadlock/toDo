@@ -10,3 +10,17 @@ i:hover {
 .backDrop {
     background-color: rgb(197, 197, 197);
 }
+
+.circleButton {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 90px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(177, 177, 255);
+    cursor: pointer;
+}
