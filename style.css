@@ -1,4 +1,5 @@
 
+
 div {
     /* border: black 1px solid; */
 }
@@ -39,4 +40,14 @@ h2 {
 
 .dropdown-style {
     border: none;
+}
+
+.trash-hover {
+    transition: all .4s;
+}
+.trash-hover:hover {
+    color: red;
+}
+.bigHeight {
+    height: 1000px;
 }
