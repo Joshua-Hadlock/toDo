@@ -1,4 +1,14 @@
+body {
+    background-color: #CFE0C3;
+}
 
+.navbar-color {
+    background-color: #1F363D;
+}
+
+.list-color {
+    background-color: #40798C;
+}
 
 div {
     /* border: black 1px solid; */
@@ -22,6 +32,7 @@ i:hover {
     cursor: pointer;
     border: black solid 1px;
     margin: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .circleWidth {
@@ -40,9 +51,11 @@ h2 {
 
 .dropdown-style {
     border: none;
+    background-color: rgba(0,0,0,0);
 }
 
 .trash-hover {
+    display: none;
     transition: all .4s;
 }
 .trash-hover:hover {
@@ -50,4 +63,36 @@ h2 {
 }
 .bigHeight {
     height: 1000px;
+    background-color: #70A9A1;
+    overflow-y: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.list-items:hover .trash-hover{
+    display: block;
+}
+
+.bigTrash {
+    display: block;
+    position: fixed;
+    bottom: 30px;
+    right: 75px;
+}
+
+.foreverAnimate {
+    animation: bounce 1s infinite;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.foreverAnimate:hover {
+    animation: none;
+}
+
+.backColor {
+    background-color:#CFE0C3;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#listItem {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
