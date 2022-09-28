@@ -36,6 +36,7 @@ function save() {
 
 
 function render() {
+  currentList = lists[currentListIs];
     listCounter = 0;
     itemCounter = 0;
     // this will hold the html that will be displayed in the sidebar
@@ -100,7 +101,6 @@ function render() {
    };
 
    function changeList(currentListId) {
-    currentList = lists[currentListId];
     currentListIs = currentListId;
     render();
    }
@@ -133,9 +133,13 @@ function render() {
   function complete(currentItem) {
     if (document.getElementsByClassName('checkBox')[currentItem].checked) {
       lists[currentListIs].todos[currentItem].completed = true;
+      currentList.todos[currentItem].completed = true;
     } else {
       lists[currentListIs].todos[currentItem].completed = false;
-  }}
+      currentList.todos[currentItem].completed = false;
+    }
+  render();
+}
 
   function deleteAllToDos() {
     for (let i = 0; i < lists[currentListIs].todos.length; i++) {
