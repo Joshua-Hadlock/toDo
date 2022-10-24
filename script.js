@@ -4,7 +4,7 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 const lists = JSON.parse(localStorage.getItem('lists'));
 let currentList = JSON.parse(localStorage.getItem('currentList'));
 
-if (lists === false) {
+if (lists === null) {
   lists = [
     {name: 'WELCOME!',
     todos: [{text: 'to start, click the button below'}, completed: false]}
