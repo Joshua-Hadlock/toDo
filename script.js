@@ -57,7 +57,7 @@ function render() {
     document.getElementById('current-list-todos').innerHTML = '';
    } else {
       lists.forEach((list) => {
-        listsHtml += `<li class="list-items list-group-item list-color my-2 rounded text-center d-flex justify-content-between align-items-center flex-row" id="listItem"><div><i class="fa-solid fa-trash trash-hover" onclick="deleteList(${listCounter})"></i></div><h4 onclick="changeList(${listCounter})">${list.name}<h4><div></div></li>`;
+        listsHtml += `<li class="list-items list-group-item list-color my-2 rounded text-center d-flex justify-content-between align-items-center flex-row" id="listItem"><div><i class="fa-solid fa-trash trash-hover" onclick="deleteList(${listCounter})"></i></div><h4 onclick="changeList(${listCounter})" class="text-break">${list.name}<h4><div></div></li>`;
         listCounter += 1;
       });
       listsHtml += '</ul>';
@@ -71,9 +71,9 @@ function render() {
       let todosHtml = '<ul class="list-group-flush">';
       currentList['todos'].forEach((list) => {
         if (currentList['todos'][itemCounter].completed === true) {
-          todosHtml += `<li class="list-group-item list-items d-flex justify-content-between"><div><input type='checkbox' class="checkBox" checked onclick="complete(${itemCounter})"> ${list.text}</div><div class="d-flex between"><i class="fa-solid fa-pen-to-square trash-hover" onclick='editListNumber(${itemCounter})' data-bs-toggle="modal" data-bs-target="#editModal"></i><i class="fa-solid fa-trash trash-hover" onclick="deleteToDo(${itemCounter})"></i></div></li>`;
+          todosHtml += `<li class="list-group-item item-todo list-items d-flex justify-content-between"><div><input type='checkbox' class="checkBox" checked onclick="complete(${itemCounter})"> ${list.text}</div><div class="d-flex between"><i class="fa-solid fa-pen-to-square trash-hover" onclick='editListNumber(${itemCounter})' data-bs-toggle="modal" data-bs-target="#editModal"></i><i class="fa-solid fa-trash trash-hover" onclick="deleteToDo(${itemCounter})"></i></div></li>`;
         } else {
-          todosHtml += `<li class="list-group-item list-items d-flex justify-content-between"><div><input type='checkbox' class="checkBox" onclick="complete(${itemCounter})"> ${list.text}</div><div class="d-flex between"><i class="fa-solid fa-pen-to-square trash-hover" onclick='editListNumber(${itemCounter})' data-bs-toggle="modal" data-bs-target="#editModal"></i><i class="fa-solid fa-trash trash-hover" onclick="deleteToDo(${itemCounter})"></i></div></li>`;
+          todosHtml += `<li class="list-group-item item-todo list-items d-flex justify-content-between"><div><input type='checkbox' class="checkBox" onclick="complete(${itemCounter})"> ${list.text}</div><div class="d-flex between"><i class="fa-solid fa-pen-to-square trash-hover" onclick='editListNumber(${itemCounter})' data-bs-toggle="modal" data-bs-target="#editModal"></i><i class="fa-solid fa-trash trash-hover" onclick="deleteToDo(${itemCounter})"></i></div></li>`;
         }
         itemCounter += 1;
       });
@@ -115,26 +115,39 @@ function render() {
    }
 
   function deleteList(currentListDelete) {
+    console.log(currentListDelete);
     if (currentList === lists[currentListDelete]) {
       if (lists[currentListDelete + 1]) {
         currentList = lists[currentListDelete + 1];
+        currentListIs = currentList += 1;
         console.log('add');
       } else {
         currentList = lists[currentListDelete - 1];
+        currentListIs -= 1;
         console.log(currentList);
         console.log('minus');
       }
     }
-    lists.splice(currentListDelete, 1);
+    console.log(currentListDelete)
+    document.getElementsByClassName('list-group-item')[currentListDelete + 1].classList.add('animate__animated');
+    document.getElementsByClassName('list-group-item')[currentListDelete + 1].classList.add('animate__fadeOutRight');
+    setTimeout(function(){
+      lists.splice(currentListDelete, 1);
+      render();
+    }, 1000)
     
-    console.log(lists);
-    render();
+    
+    
   }
 
 
   function deleteToDo(currentItem) {
-    lists[currentListIs].todos.splice(currentItem, 1);
-    render();
+    document.getElementsByClassName('item-todo')[currentItem].classList.add('animate__animated');
+    document.getElementsByClassName('item-todo')[currentItem].classList.add('animate__fadeOutRight');
+    setTimeout(function(){
+      lists[currentListIs].todos.splice(currentItem, 1);
+      render();
+  }, 1000);
   }
 
 
@@ -153,11 +166,18 @@ function render() {
   function deleteAllToDos() {
     for (let i = 0; i < lists[currentListIs].todos.length; i++) {
       if (lists[currentListIs].todos[i].completed === true) {
+        document.getElementsByClassName('item-todo')[i].classList.add('animate__animated');
+        document.getElementsByClassName('item-todo')[i].classList.add('animate__fadeOutRight');
+      }}
+    for (let i = 0; i < lists[currentListIs].todos.length; i++) {
+      if (lists[currentListIs].todos[i].completed === true) {
         lists[currentListIs].todos.splice(i, 1);
         i -= 1;
       }
     }
-    render();
+    setTimeout(function(){
+      render();
+    }, 1000)
   }
 
   function noAnimate() {
@@ -205,7 +225,7 @@ function render() {
     document.getElementById('current-list-todos').innerHTML = '';
    } else {
       filteredList.forEach((list) => {
-        listsHtml += `<li class="list-items list-group-item list-color my-2 rounded text-center d-flex justify-content-between align-items-center flex-row" id="listItem"><div></div><h4 onclick="filteredChangeList(${listCounter})">${list.name}<h4><div></div></li>`;
+        listsHtml += `<li class="list-items list-group-item list-color my-2 rounded text-center d-flex justify-content-between align-items-center flex-row" id="listItem"><div></div><h4 onclick="filteredChangeList(${listCounter})" class="text-break">${list.name}<h4><div></div></li>`;
         listCounter += 1;
       });
       listsHtml += '</ul>';
