@@ -7,7 +7,7 @@ let currentList = JSON.parse(localStorage.getItem('currentList'));
 if (lists === null) {
   lists = [
     {name: 'WELCOME!',
-    todos: [{text: 'to start, click the button below'}, completed: false]}
+    todos: [{text: 'to start, click the button below', completed: false}]}
   ];
   currentListIs = 0;
   currentList = lists[0]
