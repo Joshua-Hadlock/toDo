@@ -1,9 +1,12 @@
+// tool tips ------------------------------------------------------------------------------------------
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
+
+
+// getting starting data ------------------------------------------------------------------------------------------
 var lists = JSON.parse(localStorage.getItem('lists'));
 let currentList = JSON.parse(localStorage.getItem('currentList'));
-lists = null;
 
 if ( lists === null) {
   lists = [
@@ -17,28 +20,9 @@ if ( lists === null) {
 for (let z = 0; z < lists.length; z++) {
   if (JSON.stringify(lists[z]) === JSON.stringify(currentList)) {
     var currentListIs = z;
-    console.log('lets GO!!!');
   };
-  console.log(z);
 };
 
-
-// const lists = [
-//     {name: 'shopping list',
-//         todos: [{text: 'dinosaur nuggets', completed: false},
-//                 {text: 'chocolate', completed: false}, 
-//                 {text: 'muffins', completed: false}]},
-//     {name: 'Honey do list',
-//         todos: [{text: 'clean bathrooms', completed: false},
-//                 {text: 'clean bedroom', completed: false},
-//                 {text: 'feed cats', completed: false},
-//                 {text: 'finish blog', completed: false}]}
-// ];
-// var currentListIs = 0;
-
-
-// let currentList = [];
-// currentList = lists[0];
 
 let listCounter = 0;
 let itemCounter = 0;
@@ -46,12 +30,14 @@ let edit = 0;
 let filteredList = [];
 let currentListNotDeclared = true;
 
+
+// save data ------------------------------------------------------------------------------------------
 function save() {
   localStorage.setItem('currentList', JSON.stringify(currentList)); 
   localStorage.setItem('lists', JSON.stringify(lists));
  }
 
-
+// renders the page ------------------------------------------------------------------------------------------
 function render() {
   if (currentListNotDeclared) {
     currentList = lists[currentListIs];
@@ -95,6 +81,7 @@ function render() {
    }};
    
 
+  //  creates a todo item ------------------------------------------------------------------------------------------
    function addTodo() {
     // get the todo text from the todo input box
     const text = document.getElementById('todo-input-box').value;
@@ -108,6 +95,8 @@ function render() {
     }
    };
    
+
+  //  creates a list ------------------------------------------------------------------------------------------
    function addList() {
     const text = document.getElementById('list-input-box').value;
     if(text) {
@@ -120,30 +109,41 @@ function render() {
     }
    };
 
+
+  //  changes the list you are viewing ------------------------------------------------------------------------
    function changeList(currentListId) {
     currentListIs = currentListId;
     render();
    }
 
+
+  //  deletes the list selected (as well as moves you) ------------------------------------------------------
   function deleteList(currentListDelete) {
-    console.log(currentListDelete);
+  
     if (currentList === lists[currentListDelete]) {
       if (lists[currentListDelete + 1]) {
         currentList = lists[currentListDelete + 1];
-        currentListIs = currentList += 1;
-        console.log('add');
-      } else {
+      
+      } else  if (lists[currentListDelete - 1]) {
         currentList = lists[currentListDelete - 1];
         currentListIs -= 1;
-        console.log(currentList);
-        console.log('minus');
-      }
-    }
-    console.log(currentListDelete)
+      
+      }}
     document.getElementsByClassName('list-group-item')[currentListDelete + 1].classList.add('animate__animated');
     document.getElementsByClassName('list-group-item')[currentListDelete + 1].classList.add('animate__fadeOutRight');
+
+    lists.splice(currentListDelete, 1);
+    if (lists.length === 0) {
+      lists = [
+        {name: 'WELCOME!',
+        todos: [{text: 'to start, click the button below', completed: false}]}
+      ];
+      currentListIs = 0;
+      currentList = lists[0];
+    }
+
     setTimeout(function(){
-      lists.splice(currentListDelete, 1);
+      
       render();
     }, 1000)
     
@@ -151,7 +151,7 @@ function render() {
     
   }
 
-
+  // deletes a todo ------------------------------------------------------------------------------------------
   function deleteToDo(currentItem) {
     document.getElementsByClassName('item-todo')[currentItem].classList.add('animate__animated');
     document.getElementsByClassName('item-todo')[currentItem].classList.add('animate__fadeOutRight');
@@ -162,7 +162,7 @@ function render() {
   }
 
 
-
+// marks a todo as complete ------------------------------------------------------------------------------------------
   function complete(currentItem) {
     if (document.getElementsByClassName('checkBox')[currentItem].checked) {
       lists[currentListIs].todos[currentItem].completed = true;
@@ -174,6 +174,8 @@ function render() {
   render();
 }
 
+
+// deletes all the todos ------------------------------------------------------------------------------------------
   function deleteAllToDos() {
     for (let i = 0; i < lists[currentListIs].todos.length; i++) {
       if (lists[currentListIs].todos[i].completed === true) {
@@ -191,12 +193,14 @@ function render() {
     }, 1000)
   }
 
+
+  // stops animation ------------------------------------------------------------------------
   function noAnimate() {
     document.getElementById('create').style.animationIterationCount = '0';
   }
 
 
-
+  // edit list item ------------------------------------------------------------------------------------------
   function editListNumber(number) {
     edit = number;
   }
@@ -208,13 +212,13 @@ function render() {
 
 
 
-
+// sorting function for the lists ------------------------------------------------------------------------
   function compare(comparingValue) {
     filteredList = lists;
     if (comparingValue != '') {
       filteredList = [];
       for (let i = 0; i < lists.length; i++) {
-        if (lists[i].name.includes(comparingValue)) {
+        if (lists[i].name.toLowerCase().includes(comparingValue.toLowerCase())) {
           filteredList.push(lists[i]);
         }
     }}
@@ -223,7 +227,7 @@ function render() {
     renderOnlyLists()
   }
 
-  
+  // renders the sorted lists ------------------------------------------------------------------------
   function renderOnlyLists() {
     listCounter = 0;
     // this will hold the html that will be displayed in the sidebar
@@ -250,6 +254,7 @@ function render() {
   document.getElementById('current-list-todos').innerHTML = '';
 }
 
+  // switches to a list selected in the sorted menu ------------------------------------------------------------------------
   function filteredChangeList(number) {
     currentList = filteredList[number];
     currentListNotDeclared = false;
@@ -261,4 +266,7 @@ function render() {
         currentListIs = z;
       };
   }};
+
+
+
    render();
