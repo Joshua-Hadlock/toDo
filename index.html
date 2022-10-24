@@ -31,10 +31,13 @@
                 <div id="lists"></div>
               <!-- list of todo lists go here -->
             </div>
-       
+            
+            <!-- delete all checked todo items -->
             <div class="col-8 backColor">
               <i class="fa-solid fa-trash bigTrash trash-hover" id='deleteAllToDosIcon'data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete all completed items" onclick="deleteAllToDos()"></i>
                 <div class="btn-group dropup move">
+
+                  <!-- add item or list button -->
                   <button type="button" class="circleButton circleWidth btn btn-secondary dropdown-toggle animate__animated foreverAnimate" data-bs-toggle="dropdown" aria-expanded="false" id="create" onclick="noAnimate()"></button>
                   <ul class="dropdown-menu dropdown-style">
                     <!-- Dropdown menu links -->

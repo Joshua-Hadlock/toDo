@@ -2,6 +2,7 @@ body {
     background-color: #CFE0C3;
 }
 
+/* colors */
 .navbar-color {
     background-color: #1F363D;
 }
@@ -15,17 +16,25 @@ body {
     background-color: #40798C;
 }
 
-div {
-    /* border: black 1px solid; */
+.backDropFive {
+    background-color: rgb(197, 197, 197);
 }
+
+.backColor {
+    background-color:#CFE0C3;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+/* div {
+    /* border: black 1px solid; 
+} */
 
 i:hover {
     cursor: pointer;
 }
 
-.backDropFive {
-    background-color: rgb(197, 197, 197);
-}
+/* add items/lists button */
 
 .circleButton {
     border-radius: 90px;
@@ -50,6 +59,16 @@ i:hover {
     right: 10px;
 }
 
+.foreverAnimate {
+    animation: bounce 1s infinite;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.foreverAnimate:hover {
+    animation: none;
+}
+
+/* titles */
 h2 {
     font-size: 10px;
 }
@@ -63,18 +82,14 @@ h4 {
     background-color: rgba(0,0,0,0);
 }
 
+
+/* trash cans */
 .trash-hover {
     display: none;
     transition: all .4s;
 }
 .trash-hover:hover {
     color: red;
-}
-.bigHeight {
-    height: 1000px;
-    background-color: #70A9A1;
-    overflow-y: auto;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .list-items:hover .trash-hover{
@@ -88,24 +103,22 @@ h4 {
     right: 75px;
 }
 
-.foreverAnimate {
-    animation: bounce 1s infinite;
+
+/* side menu bar with lists*/
+.bigHeight {
+    height: 1000px;
+    background-color: #70A9A1;
+    overflow-y: auto;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.foreverAnimate:hover {
-    animation: none;
-}
-
-.backColor {
-    background-color:#CFE0C3;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
 
 #listItem {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+
+/* random stuff */
 .between {
     justify-content: space-between;
     width: 40px;
