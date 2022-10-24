@@ -1,7 +1,7 @@
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
-const lists = JSON.parse(localStorage.getItem('lists'));
+var lists = JSON.parse(localStorage.getItem('lists'));
 let currentList = JSON.parse(localStorage.getItem('currentList'));
 
 if (lists === null) {
