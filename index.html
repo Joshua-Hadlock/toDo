@@ -25,14 +25,15 @@
        
         <div class="container-fluid">
           <div class="row">
-            <div class="col-4 col-sm-3 d-flex flex-column backDrop bigHeight">
+            <div class="col-4 col-sm-3 d-flex flex-column backDropFive bigHeight">
                 <input id="search" type="text" placeholder="Enter List Name..." class="my-2">
+                <button class="list-items list-group-item filter-color my-2 rounded text-center d-flex justify-content-center align-items-center"onclick="compare(document.getElementById('search').value)"><h4>Filter</h4></button>
                 <div id="lists"></div>
               <!-- list of todo lists go here -->
             </div>
        
             <div class="col-8 backColor">
-              <i class="fa-solid fa-trash bigTrash trash-hover" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete all completed items" onclick="deleteAllToDos()"></i>
+              <i class="fa-solid fa-trash bigTrash trash-hover" id='deleteAllToDosIcon'data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete all completed items" onclick="deleteAllToDos()"></i>
                 <div class="btn-group dropup move">
                   <button type="button" class="circleButton circleWidth btn btn-secondary dropdown-toggle animate__animated foreverAnimate" data-bs-toggle="dropdown" aria-expanded="false" id="create" onclick="noAnimate()"></button>
                   <ul class="dropdown-menu dropdown-style">
@@ -83,6 +84,25 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="addList()">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- bootstrap modal for changing an item -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Item</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <input type="text" placeholder="Edit Item" id="edit-input-box">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="editList()">Save changes</button>
           </div>
         </div>
       </div>
